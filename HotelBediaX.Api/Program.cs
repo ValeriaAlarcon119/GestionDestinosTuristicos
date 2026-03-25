@@ -8,22 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS para permitir llamadas desde el frontend (localhost en dev, Render en prod)
+// CORS totalmente abierto para evitar problemas entre plataformas
 const string AllowFrontend = "AllowFrontend";
-var allowedOrigins = new[]
-{
-    "http://localhost:5173",
-    "https://localhost:5173",
-    "https://gestiondestinosturisticos.netlify.app",
-    "https://gestiondestinosturisticos.onrender.com",
-    builder.Configuration["FRONTEND_URL"] ?? ""
-}.Where(o => !string.IsNullOrWhiteSpace(o)).ToArray();
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: AllowFrontend, policy =>
     {
-        policy.WithOrigins(allowedOrigins)
+        policy.AllowAnyOrigin()
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
