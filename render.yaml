@@ -1,0 +1,25 @@
+services:
+  # ── 1. API Backend (Web Service con Docker) ──────────────────────────────
+  - type: web
+    name: gestiondestinosapi
+    runtime: docker
+    dockerfilePath: ./HotelBediaX.Api/Dockerfile
+    dockerContext: ./HotelBediaX.Api
+    plan: free
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: FRONTEND_URL
+        value: https://gestiondestinosturisticos.onrender.com
+
+  # ── 2. Frontend (Static Site) ─────────────────────────────────────────────
+  # Este ya está creado manualmente en Render.
+  # Se incluye aquí como referencia, pero NO lo vuelvas a crear.
+  # - type: web
+  #   name: GestionDestinosTuristicos
+  #   runtime: static
+  #   buildCommand: cd frontend && npm install && npm run build
+  #   staticPublishPath: ./frontend/dist
+  #   envVars:
+  #     - key: VITE_API_URL
+  #       value: https://gestiondestinosapi.onrender.com/api

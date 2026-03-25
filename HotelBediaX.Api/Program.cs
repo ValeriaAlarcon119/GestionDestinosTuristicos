@@ -8,13 +8,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// CORS para permitir llamadas desde el frontend (Vite por defecto en 5173)
+// CORS para permitir llamadas desde el frontend (localhost en dev, Render en prod)
 const string AllowFrontend = "AllowFrontend";
+var allowedOrigins = new[]
+{
+    "http://localhost:5173",
+    "https://localhost:5173",
+    builder.Configuration["FRONTEND_URL"] ?? "https://gestiondestinosturisticos.onrender.com"
+};
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: AllowFrontend, policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
