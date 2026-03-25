@@ -14,8 +14,10 @@ var allowedOrigins = new[]
 {
     "http://localhost:5173",
     "https://localhost:5173",
-    builder.Configuration["FRONTEND_URL"] ?? "https://gestiondestinosturisticos.onrender.com"
-};
+    "https://gestiondestinosturisticos.netlify.app",
+    "https://gestiondestinosturisticos.onrender.com",
+    builder.Configuration["FRONTEND_URL"] ?? ""
+}.Where(o => !string.IsNullOrWhiteSpace(o)).ToArray();
 
 builder.Services.AddCors(options =>
 {
