@@ -1,100 +1,78 @@
-# 🏨 HotelBediaX - Sistema de Gestión de Destinos
+# 🌍 Gestión de Destinos Turísticos
 
-Bienvenido a **HotelBediaX**, una aplicación web moderna diseñada para la gestión eficiente de destinos turísticos. Este proyecto es una solución full-stack que combina la potencia de **.NET 8** en el servidor con la agilidad de **React** y **Vite** en la interfaz de usuario.
+![Estado del Proyecto](https://img.shields.io/badge/Estado-Producci%C3%B3n-success?style=for-the-badge)
+![Tecnología](https://img.shields.io/badge/.NET_8-512BD4?style=for-the-badge&logo=dotnet)
+![Frontend](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react)
 
----
-
-## 🚀 Descripción del Proyecto
-
-HotelBediaX permite centralizar toda la información de destinos de viaje, permitiendo a los administradores visualizar, buscar, añadir, editar y eliminar destinos de forma sencilla e intuitiva. Su diseño está enfocado en la usabilidad y la rapidez de respuesta.
-
-### Principales Funcionalidades
--   **Dashboard de Destinos**: Listado paginado de todos los destinos activos e inactivos.
--   **Búsqueda Dinámica**: Encuentra destinos por nombre, país o ciudad en tiempo real.
--   **Gestión CRUD Completa**:
-    -   Crear nuevos destinos con descripción, precio y valoración.
-    -   Editar información existente.
-    -   Activar o desactivar destinos.
-    -   Eliminar destinos con confirmación.
--   **Documentación Interactiva**: Backend documentado íntegramente con Swagger.
+Sistema completo de gestión para destinos turísticos que permite el control de información, precios y disponibilidad en tiempo real. Este proyecto utiliza una arquitectura desacoplada con un API backend robusto y una interfaz frontend moderna.
 
 ---
 
-## 🛠️ Tecnologías y Arquitectura
-
-### 🔙 Backend (.NET 8.0)
-El servidor está construido bajo una arquitectura de **Minimal API**, priorizando la simplicidad y el rendimiento.
-
--   **Framework**: ASP.NET Core 8.0.
--   **Almacenamiento**: Utiliza un **Repositorio en Memoria** (`InMemoryDestinationRepository`), ideal para demostraciones rápidas y pruebas sin configuraciones externas de DB.
--   **Swagger/OpenAPI**: Integración completa para pruebas de endpoints y documentación técnica.
--   **CORS**: Configurado para permitir comunicación segura con el frontend.
--   **Estructura**:
-    -   `Models/`: Definiciones de datos (`Destination`, `PagedResult`).
-    -   `Repositories/`: Lógica de acceso a datos desacoplada mediante interfaces.
-    -   `Program.cs`: Configuración de servicios y definición de rutas.
-
-### 🎨 Frontend (React + Vite + TypeScript)
-Una interfaz de usuario moderna, reactiva y totalmente tipada para mayor robustez.
-
--   **Core**: React 19 + TypeScript.
--   **Herramientas de Construcción**: Vite 7.x para transpilación ultra rápida.
--   **Comunicación**: Axios para peticiones HTTP eficientes al backend.
--   **Ruteo**: React Router para navegación fluida entre módulos (Destinos, Próximamente: Reservas, Clientes).
--   **Estilos**: Vanilla CSS con variables personalizadas para un diseño "Dark Mode" premium y moderno.
--   **Estructura**:
-    -   `src/api/`: Cliente API centralizado.
-    -   `src/features/destinations/`: Lógica, componentes y estilos específicos del módulo de destinos.
-    -   `src/layout/`: Estructura principal de la app (Sidebar, Topbar).
+## 🚀 Ver en Producción
+Puedes acceder a la versión desplegada aquí:
+🔗 **[https://gestiondestinosturisticos.netlify.app/destinations](https://gestiondestinosturisticos.netlify.app/destinations)**
 
 ---
 
-## 🏗️ Cómo ejecutar el proyecto
+## 🛠️ Tecnologías y Versiones
 
-### 1. Requisitos previos
--   [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
--   [Node.js](https://nodejs.org/) (v18 o superior recomendado)
--   NPM (incluido con Node.js)
+### **Backend (API)**
+*   **Lenguaje:** C# 12
+*   **Framework:** ASP.NET Core 8.0 (Versión LTS)
+*   **Arquitectura:** Minimal APIs
+*   **Gestión de Datos:** Repositorio en memoria (Listas)
+*   **CORS:** Configuración multi-plataforma (Allow Any Origin)
+*   **Herramientas:** 
+    *   `Swashbuckle.AspNetCore`: Documentación interactiva con Swagger.
+    *   Contenedores: **Docker** para despliegue estandarizado en la nube.
 
-### 2. Ejecutar el Backend
-1. Abre una terminal en `backend/`.
-2. Ejecuta:
-   ```powershell
-   dotnet run
-   ```
-3. Verifica la conexión en: [http://localhost:5210/swagger](http://localhost:5210/swagger)
-
-### 3. Ejecutar el Frontend
-1. Abre una terminal en `frontend/`.
-2. Instala dependencias:
-   ```powershell
-   npm install
-   ```
-3. Inicia el servidor de desarrollo:
-   ```powershell
-   npm run dev
-   ```
-4. Accede desde tu navegador: [http://localhost:5173](http://localhost:5173)
+### **Frontend (UI)**
+*   **Framework:** React 18
+*   **Bundler:** Vite
+*   **Lenguaje:** TypeScript
+*   **Estilos:** CSS3 nativo (Diseño moderno y responsive)
+*   **Peticiones HTTP:** Axios para comunicación asíncrona con la API.
 
 ---
 
-## 📂 Estructura de Carpetas
+## 📋 Estructura del Proyecto
+
 ```text
-HotelBediaX-Suite/
-├── HotelBediaX.Api/        # Antes 'backend' - Proyecto ASP.NET Core
-│   ├── Models/             # Clases de Dominio
-│   ├── Repositories/       # Manejo de datos (In-memory)
-│   └── Program.cs          # Punto de entrada
-├── frontend/               # Proyecto React (HotelBediaX.Web)
-│   ├── src/
-│   │   ├── api/            # Peticiones al backend
-│   │   ├── features/       # Módulos del negocio
-│   │   └── layout/         # Componentes estructurales
-│   └── package.json        # Configuración de dependencias
-└── README.md               # Documentación general
+GestionDestinos/
+├── HotelBediaX.Api/    # Backend en .NET (Core del sistema)
+│   ├── Controllers/   # Endpoints de la API
+│   ├── Models/        # Definición de datos (Destino, PagedResult)
+│   └── Dockerfile     # Configuración para despliegue en Render
+└── frontend/          # Interfaz React + Vite
+    ├── src/           # Código fuente (Componentes, API client)
+    └── netlify.toml   # Configuración de redirecciones para Netlify
 ```
 
 ---
 
-## 🎯 Objetivo de la Prueba
-Este proyecto demuestra la capacidad para construir una aplicación modular, escalable y con foco en la calidad del código, cubriendo tanto lógica compleja en el servidor como una experiencia de usuario fluida en el navegador.
+## ⚙️ Paso a Paso del Despliegue
+
+### **1. Despliegue del Backend (Render)**
+1.  Crear un nuevo **Web Service** en Render.
+2.  Conectar este repositorio de GitHub.
+3.  **Configuración Docker**:
+    *   **Context**: `HotelBediaX.Api`
+    *   **Dockerfile Path**: `HotelBediaX.Api/Dockerfile`
+4.  **Variables de Entorno**:
+    *   `ASPNETCORE_ENVIRONMENT`: `Production`
+
+### **2. Despliegue del Frontend (Netlify)**
+1.  Importar proyecto desde GitHub.
+2.  **Configuración Build**:
+    *   **Base directory**: `frontend`
+    *   **Build command**: `npm run build`
+    *   **Publish directory**: `dist`
+3.  **Variables de Entorno**:
+    *   `VITE_API_URL`: URL de tu backend en Render (ej. `https://xxx.onrender.com/api`)
+
+---
+
+## 📝 Autoría
+Este proyecto ha sido desarrollado íntegramente como una solución profesional de gestión.
+
+✨ **Realizado por: Valeria Alarcón Andrade** ✨
